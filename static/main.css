@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #dbeafe, #f0fdfa);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    max-width: 700px;
+    width: 100%;
+    animation: slideFadeIn 1s ease-out;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+  }
+  
+  .glass-input {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .glass-input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+  }
+  
+  .divider {
+    margin: 2rem 0 1rem;
+    font-weight: bold;
+    color: #2563eb;
+    border-bottom: 2px dashed #93c5fd;
+    padding-bottom: 0.25rem;
+  }
+  
+  .submit-btn {
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.75rem;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(to right, #2563eb, #0ea5e9);
+    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+  }
+  
+  @keyframes slideFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .result-card {
+    background-color: #f9fafb;
+    transition: transform 0.2s ease;
+  }
+  .result-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  .match-bar {
+    font-size: 1.2rem;
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+  }
+  
+  .match-icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .match-yes {
+    color: #10b981;
+  }
+  
+  .match-no {
+    color: #ef4444;
+  }
+  
+  .match-skip {
+    color: #9ca3af;
+  }
+  
+  .explanation-toggle {
+    cursor: pointer;
+    color: #2563eb;
+    font-weight: 500;
+  }
+  
+  .loader {
+    border: 6px solid #e5e7eb;
+    border-top: 6px solid #3b82f6;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

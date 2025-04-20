@@ -1,4 +1,7 @@
-% study spots identifiers
+% -----------------------------------------------------------------------------
+%     Study Spot Identifiers (Atomic Facts)
+%     These atoms are used as internal keys to identify each study spot
+% -----------------------------------------------------------------------------
 study_spot(jaksim_chungmuro).
 study_spot(tongue_seongsu).
 study_spot(mailroom_sindang).
@@ -15,8 +18,16 @@ study_spot(mangrove_sinseol_20f).
 study_spot(mangrove_sinseol_b2).
 study_spot(mangrove_dongdaemun_15f).
 study_spot(mangrove_dongdaemun_b1).
+study_spot(left_coffee).
+study_spot(eightstreet).
+study_spot(metcha_myeongdong).
+study_spot(lang_study_cafe_sinchon).
 
-% study spots names
+
+
+% -----------------------------------------------------------------------------
+%               Study Spot Display Names (for UI/Explanations)
+% -----------------------------------------------------------------------------
 study_spot_name(jaksim_chungmuro, 'Jaksim Study Cafe Chungmuro Station Branch').
 study_spot_name(tongue_seongsu, 'Tongue Seongsu space').
 study_spot_name(mailroom_sindang, 'Mailroom Sindang').
@@ -33,8 +44,18 @@ study_spot_name(mangrove_sinseol_20f, 'Mangrove Sinseol 20F').
 study_spot_name(mangrove_sinseol_b2, 'Mangrove Sinseol B2').
 study_spot_name(mangrove_dongdaemun_15f, 'Mangrove Dongdaemun 15F').
 study_spot_name(mangrove_dongdaemun_b1, 'Mangrove Dongdaemun B1').
+study_spot_name(left_coffee, 'Left Coffee').
+study_spot_name(eightstreet, '8street').
+study_spot_name(metcha_myeongdong, 'METCHA Myeong-dong').
+study_spot_name(lang_study_cafe_sinchon, 'Lang Study Cafe (Sinchon)').
 
-% study spots types
+
+
+% -----------------------------------------------------------------------------
+%                    Study Spot Type Classification
+% -----------------------------------------------------------------------------
+%           Types include: study_cafe, cafe, library, coworking
+% -----------------------------------------------------------------------------
 type(jaksim_chungmuro, study_cafe).
 type(tongue_seongsu, cafe).
 type(mailroom_sindang, cafe).
@@ -51,8 +72,25 @@ type(mangrove_sinseol_20f, coworking).
 type(mangrove_sinseol_b2, coworking).
 type(mangrove_dongdaemun_15f, coworking).
 type(mangrove_dongdaemun_b1, coworking).
+type(left_coffee, cafe).
+type(eightstreet, cafe).
+type(metcha_myeongdong, cafe).
+type(lang_study_cafe_sinchon, study_cafe).
 
-% travel times to study spots
+
+% -----------------------------------------------------------------------------
+%                           Travel Time Encoding
+% -----------------------------------------------------------------------------
+% Each fact encodes the travel time from a specific origin (sinseol or dongdaemun)
+% to a study spot. The time categories are:
+% - t0_5     → 0–5 minutes
+% - t6_15    → 6–15 minutes
+% - t16_30   → 16–30 minutes
+% - t31      → 31+ minutes
+%
+% Format: travel(Spot, TimeFromSinseol, TimeFromDongdaemun).
+% -----------------------------------------------------------------------------
+
 travel(jaksim_chungmuro, t16_30, t6_15).
 travel(tongue_seongsu, t16_30, t16_30).
 travel(mailroom_sindang, t6_15, t6_15).
@@ -69,8 +107,20 @@ travel(mangrove_sinseol_20f, t0_5, t16_30).
 travel(mangrove_sinseol_b2, t0_5, t16_30).
 travel(mangrove_dongdaemun_15f, t16_30, t0_5).
 travel(mangrove_dongdaemun_b1, t16_30, t0_5).
+travel(left_coffee, t16_30, t16_30).
+travel(eightstreet, t16_30, t16_30).
+travel(metcha_myeongdong, t31, t16_30).
+travel(lang_study_cafe_sinchon, t31, t16_30).
 
-% work type at study spots
+
+% -----------------------------------------------------------------------------
+%                           Supported Work Types
+% -----------------------------------------------------------------------------
+% These facts indicate what kinds of work are suitable at each study spot.
+% Options include: deep_focus, casual, group.
+% Format: work(Spot, [ListOfSupportedWorkTypes]).
+% -----------------------------------------------------------------------------
+
 work(jaksim_chungmuro, [deep_focus]).
 work(tongue_seongsu, [deep_focus, casual, group]).
 work(mailroom_sindang, [casual, group]).
@@ -87,8 +137,20 @@ work(mangrove_sinseol_20f, [casual, group]).
 work(mangrove_sinseol_b2, [deep_focus]).
 work(mangrove_dongdaemun_15f, [casual, group]).
 work(mangrove_dongdaemun_b1, [deep_focus]).
+work(left_coffee, [deep_focus]).
+work(eightstreet, [casual, group]).
+work(metcha_myeongdong, [casual, group]).
+work(lang_study_cafe_sinchon, [deep_focus]).
 
-% power outlets available at the study spots
+
+% -----------------------------------------------------------------------------
+%                       Power Outlet Availability
+% -----------------------------------------------------------------------------
+% Whether each spot has power outlets, limited outlets, or none.
+% Values: yes, limited, no
+% Format: outlets(Spot, Availability).
+% -----------------------------------------------------------------------------
+
 outlets(jaksim_chungmuro, yes).
 outlets(tongue_seongsu, yes).
 outlets(mailroom_sindang, yes).
@@ -105,9 +167,20 @@ outlets(mangrove_sinseol_20f, yes).
 outlets(mangrove_sinseol_b2, yes).
 outlets(mangrove_dongdaemun_15f, yes).
 outlets(mangrove_dongdaemun_b1, yes).
+outlets(left_coffee, yes).
+outlets(eightstreet, yes).
+outlets(metcha_myeongdong, yes).
+outlets(lang_study_cafe_sinchon, yes).
 
 
-% study spot vibe
+% -----------------------------------------------------------------------------
+%                            Study Spot Vibe
+% -----------------------------------------------------------------------------
+% Indicates the general ambience or vibe of a spot.
+% Options: quiet, cozy, lively.
+% Format: vibe(Spot, [ListOfVibes]).
+% -----------------------------------------------------------------------------
+
 vibe(jaksim_chungmuro, [quiet]).
 vibe(tongue_seongsu, [quiet, cozy]).
 vibe(mailroom_sindang, [lively, cozy]).
@@ -124,8 +197,20 @@ vibe(mangrove_sinseol_20f, [lively]).
 vibe(mangrove_sinseol_b2, [quiet]).
 vibe(mangrove_dongdaemun_15f, [lively]).
 vibe(mangrove_dongdaemun_b1, [quiet]).
+vibe(left_coffee, [lively, cozy]).
+vibe(eightstreet, [lively]).
+vibe(metcha_myeongdong, [quiet, cozy]).
+vibe(lang_study_cafe_sinchon, [quiet]).
 
-% table options for study spots
+
+% -----------------------------------------------------------------------------
+%                        Seating Types Available
+% -----------------------------------------------------------------------------
+% Specifies what seating options are available at each spot.
+% Options: individual_desk, open_table, booth, lounge.
+% Format: seating(Spot, [ListOfSeatingTypes]).
+% -----------------------------------------------------------------------------
+
 seating(jaksim_chungmuro, [individual_desk, open_table, booth]).
 seating(tongue_seongsu, [open_table, lounge]).
 seating(mailroom_sindang, [individual_desk]).
@@ -142,27 +227,51 @@ seating(mangrove_sinseol_20f, [open_table, lounge, individual_desk]).
 seating(mangrove_sinseol_b2, [booth, open_table, lounge, individual_desk]).
 seating(mangrove_dongdaemun_15f, [open_table, lounge, individual_desk]).
 seating(mangrove_dongdaemun_b1, [booth, open_table, lounge, individual_desk]).
+seating(left_coffee, [open_table, individual_desk]).
+seating(eightstreet, [open_table, individual_desk]).
+seating(metcha_myeongdong, [open_table, individual_desk]).
+seating(lang_study_cafe_sinchon, [individual_desk, open_table, booth]).
 
-% pricing for study spots
+
+% -----------------------------------------------------------------------------
+%                                Pricing Category
+% -----------------------------------------------------------------------------
+% Indicates the relative cost to use the space.
+% Values: free, low, medium, high
+% Format: price(Spot, PriceCategory).
+% -----------------------------------------------------------------------------
+
 price(jaksim_chungmuro, medium).
-price(tongue_seongsu, free).
-price(mailroom_sindang, free).
-price(solbangul_bakery, free).
-price(coffee_smith_itaewon, free).
-price(mouse_rabbit, free).
+price(tongue_seongsu, high).
+price(mailroom_sindang, medium).
+price(solbangul_bakery, medium).
+price(coffee_smith_itaewon, low).
+price(mouse_rabbit, high).
 price(lang_study_cafe, low).
 price(starfield_library, free).
-price(burnt_seoul, free).
-price(from_hearts_coffee, free).
-price(conhas_ddp, free).
-price(endlong, free).
+price(burnt_seoul, high).
+price(from_hearts_coffee, medium).
+price(conhas_ddp, medium).
+price(endlong, low).
 price(mangrove_sinseol_20f, free).
 price(mangrove_sinseol_b2, free).
 price(mangrove_dongdaemun_15f, free).
 price(mangrove_dongdaemun_b1, free).
+price(left_coffee, high).
+price(eightstreet, medium).
+price(metcha_myeongdong, high).
+price(lang_study_cafe_sinchon, low).
 
 
-% closing time period for study spots
+
+% -----------------------------------------------------------------------------
+%                               Open Late?
+% -----------------------------------------------------------------------------
+% Whether the study spot is open late into the evening.
+% Values: yes, no
+% Format: open_late(Spot, IsOpenLate).
+% -----------------------------------------------------------------------------
+
 open_late(jaksim_chungmuro, yes).
 open_late(tongue_seongsu, no).
 open_late(mailroom_sindang, yes).
@@ -179,8 +288,18 @@ open_late(mangrove_sinseol_20f, yes).
 open_late(mangrove_sinseol_b2, yes).
 open_late(mangrove_dongdaemun_15f, yes).
 open_late(mangrove_dongdaemun_b1, yes).
+open_late(left_coffee, yes).
+open_late(eightstreet, yes).
+open_late(metcha_myeongdong, yes).
+open_late(lang_study_cafe_sinchon, yes).
 
-% naver maps links for study spots
+
+% -----------------------------------------------------------------------------
+%                           Naver Map Links
+% -----------------------------------------------------------------------------
+% Direct map links to each study spot location.
+% Format: link(Spot, NaverURL).
+% -----------------------------------------------------------------------------
 link(jaksim_chungmuro, 'https://naver.me/xIeG1TdK').
 link(tongue_seongsu, 'https://naver.me/xucLmQmc').
 link(mailroom_sindang, 'https://naver.me/FbOdq3Ih').
@@ -197,36 +316,72 @@ link(mangrove_sinseol_20f, 'https://naver.me/xKEpyD9q').
 link(mangrove_sinseol_b2, 'https://naver.me/xKEpyD9q').
 link(mangrove_dongdaemun_15f, 'https://naver.me/GlJMRxlV').
 link(mangrove_dongdaemun_b1, 'https://naver.me/GlJMRxlV').
+link(left_coffee, 'https://naver.me/5kXfFqGD').
+link(eightstreet, 'https://naver.me/Fbin70YB').
+link(metcha_myeongdong, 'https://naver.me/GcWrD6IG').
+link(lang_study_cafe_sinchon, 'https://naver.me/GJTqa5Gx').
 
 
 
 
-% KB Rules
-% rules for time conversion from integer to categorical
-map_travel_times(Minutes, t0_5) :- Minutes =< 5.
-map_travel_times(Minutes, t6_15) :- Minutes > 5, Minutes =< 15.
+
+% ===========================
+% KB Rules: Utility Predicates
+% ===========================
+
+% Converts integer travel time (in minutes) to a categorical time band
+% This helps us match user constraints with pre-defined categories
+map_travel_times(Minutes, t0_5)   :- Minutes =< 5.
+map_travel_times(Minutes, t6_15)  :- Minutes > 5, Minutes =< 15.
 map_travel_times(Minutes, t16_30) :- Minutes > 15, Minutes =< 30.
-map_travel_times(Minutes, t31) :- Minutes > 30.
+map_travel_times(Minutes, t31)    :- Minutes > 30.
 
 
-% strict rule for matching based on preference
+
+% ======================================
+% STRICT MATCHING: All preferences must match exactly
+% ======================================
+
+% recommend_spot/11 is a deterministic rule that succeeds only if all user preferences are met exactly
 recommend_spot(Origin, MaxMinutes, WorkType, OutletPref, VibePref, SeatingPref, PricePref, OpenLate, Name, Link) :-
+    % Convert the user's travel time into a category
     map_travel_times(MaxMinutes, TimeCode),
-    (Origin=sinseol -> travel(Spot, TimeCode, _)
-    ; Origin=dongdaemun -> travel(Spot, _, TimeCode)
-    ; throw(error(invalid_origin(Origin), recommend_spot/11))
+
+    % Match travel time based on origin (sinseol or dongdaemun)
+    (Origin = sinseol     -> travel(Spot, TimeCode, _)
+    ; Origin = dongdaemun -> travel(Spot, _, TimeCode)
+    ; throw(error(invalid_origin(Origin), recommend_spot/11))  % catch unexpected origin input
     ),
 
+    % Check if the spot supports user's work type
     work(Spot, WorkList), member(WorkType, WorkList),
+
+    % Check power outlet match
     outlets(Spot, OutletPref),
+
+    % Match preferred vibe (e.g., cozy, quiet)
     vibe(Spot, VibeList), member(VibePref, VibeList),
+
+    % Match seating preference (e.g., booth, lounge)
     seating(Spot, SeatList), member(SeatingPref, SeatList),
+
+    % Match price category (e.g., low, medium, free)
     price(Spot, PricePref),
+
+    % Match if the place is open late
     open_late(Spot, OpenLate),
+
+    % Return name and link of matched spot
     study_spot_name(Spot, Name),
     link(Spot, Link).
-    
-% fallback strategy based on preference scoring + ranking
+
+
+% =========================================================
+% FLEXIBLE MATCHING: Score-based fallback strategy
+% =========================================================
+
+% score_spot/20 assigns a weighted score to each spot and builds an explanation string
+% It handles skipped preferences and gives users partial matches when exact ones don't exist
 score_spot(
     Origin, MaxMinutes, TravelWeight, 
     WorkType, WorkWeight, 
@@ -237,14 +392,17 @@ score_spot(
     OpenLate, LateWeight,
     Mode, Name, Link, 
     Score, Explanation) :-
-    % start scoring from 0
+    
+    % Start with zero score and empty explanation list
     Exp1 = [],
     study_spot(Spot),
     Score1 = 0,
+    
+    % Determine explanation verbosity (short/long)
+    (Mode == "" -> ExplainMode = long ; ExplainMode = Mode),
 
-    (var(Mode) -> ExplainMode = long ; ExplainMode = Mode),
-
-    % weight travel time by TravelWeight
+    
+    % === Travel Time ===
     map_travel_times(MaxMinutes, TimeCode),
      (
         (   (Origin == sinseol,    travel(Spot, TimeCode, _))
@@ -259,7 +417,7 @@ score_spot(
         append(Exp1, [Msg2], Exp2)
     ),
 
-
+    % === Work Type ===
     work(Spot, WorkList), 
     (   
         WorkType == skip
@@ -276,7 +434,7 @@ score_spot(
             )
     ),
 
-
+    % === Outlet Availability ===
     outlets(Spot, OutletVal), 
     (   
         OutletPref == skip
@@ -293,7 +451,7 @@ score_spot(
             )
         ),
 
-    % weight vibe by 1
+    % === Vibe Preference ===
     vibe(Spot, VibeList),
     (
         VibePref == skip 
@@ -310,7 +468,7 @@ score_spot(
         )
     ),
 
-    % weight seating by 1
+    % === Seating Preference ===
     seating(Spot, SeatList),
     (
         SeatingPref == skip 
@@ -327,7 +485,7 @@ score_spot(
         )
     ),
 
-    % weight price by 2
+    % === Price Preference ===
     price(Spot, PriceVal),
     (
         PricePref == skip
@@ -344,7 +502,7 @@ score_spot(
         )
         ),
 
-    % weight opening time period by 1
+    % === Open Late Preference ===
     open_late(Spot, OpenVal),
     (
         OpenLate == skip
@@ -361,23 +519,30 @@ score_spot(
         )
         ),
 
-    % output
+    % Final output
     Score = Score8,
     study_spot_name(Spot, Name),
-    % explanation for the score
     atomic_list_concat(Exp8, " ", Explanation),
-    
+    % Get the link for the spot
     link(Spot, Link).
 
 
-% predicate to get the top "n" spots
+% % =========================================================
+% % Utility Predicate to take top-N results from a list
+% % =========================================================
 top_n(List, N, Output) :-
-    length(Output, N),
+    length(List, Len),
+    Min is min(N, Len),
+    length(Output, Min),
     append(Output, _, List).
+
     
 
+% % ===================================
+% % Rule: Find Top Ranked Study Spots
+% % ===================================
 
-% Get the top study spots!
+% % find_top_study_spots/18 takes all user preferences and scoring weights, ranks all options, and returns the top N
 find_top_study_spots(Origin, MaxMinutes, TravelWeight, 
     WorkType, WorkWeight,
     OutletPref, OutletWeight,
@@ -386,6 +551,8 @@ find_top_study_spots(Origin, MaxMinutes, TravelWeight,
     PricePref, PriceWeight,
     OpenLate, LateWeight,
     Mode, TopN, Results) :-
+
+    % Collect all scored results using score_spot/20
     findall(
         [Score, Name, Link, Explanation],
         score_spot(
@@ -400,10 +567,13 @@ find_top_study_spots(Origin, MaxMinutes, TravelWeight,
             Score, Explanation) ,
         AllResults
     ),
+
+    % Sort by score ascending and reverse to get descending            
     sort(AllResults, SortedAscending),
     reverse(SortedAscending, SortedDescending),  % Sort by score descending
 
     (
+        % Extract the top-N results (or all if TopN is not set)
         var(TopN)
         -> Results = SortedDescending
         ; top_n(SortedDescending, TopN, Results)

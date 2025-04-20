@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seoul Study Spot Finder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+  <style>
+    .loader {
+      border: 6px solid #e0f2fe;
+      border-top: 6px solid #3b82f6;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper" id="form-wrapper">
+    <section class="glass-card shadow-lg">
+      <h1 class="text-center mb-4">🌏 Seoul Study Spot Finder</h1>
+      <form action="/search" method="POST" class="form-section">
+
+        <!-- ORIGIN -->
+        <div class="form-group">
+          <label>Where are you coming from?</label>
+          <select name="origin" class="form-control glass-input" required>
+            <option value="sinseol">Mangrove Sinseol</option>
+            <option value="dongdaemun">Mangrove Dongdaemun</option>
+          </select>
+        </div>
+
+        <!-- MAX MINUTES -->
+        <div class="form-group">
+          <label>Max Travel Time (in minutes)</label>
+          <input type="number" name="max_minutes" min="1" placeholder="e.g., 15" class="form-control glass-input" required>
+        </div>
+
+        <!-- PREFERENCES -->
+        <div class="divider">🎯 Preferences</div>
+
+        {% for attr in ['work_type', 'outlet_pref', 'vibe_pref', 'seating_pref', 'price_pref', 'open_late'] %}
+          <div class="form-group">
+            <label>{{ attr.replace("_", " ").title() }}</label>
+            <input type="text" name="{{ attr }}" placeholder="e.g. cozy / skip" class="form-control glass-input">
+          </div>
+          <div class="form-group">
+            <label>How important is this to you (1–5)?</label>
+            <input type="range" name="{{ attr.replace('_pref', '') }}_weight" min="0" max="5" class="form-range">
+          </div>
+        {% endfor %}
+
+        <!-- MORE OPTIONS -->
+        <div class="divider">⚙️ Settings</div>
+
+        <div class="form-group">
+          <label>Explanation Mode</label>
+          <select name="explain_mode" class="form-control glass-input">
+            <option value="short">Short</option>
+            <option value="long" selected>Long</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Top N Recommendations</label>
+          <input type="number" name="top_n" min="1" value="3" class="form-control glass-input">
+        </div>
+
+        <div class="form-group">
+          <label>Recommendation Mode</label>
+          <select name="mode" class="form-control glass-input">
+            <option value="strict">Strict (Exact Match)</option>
+            <option value="fallback" selected>Fallback (Ranked)</option>
+          </select>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="text-center">
+          <button type="submit" class="submit-btn">🚀 Find Spots</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader" style="display: none;"></div>
+
+  <!-- Script to handle form submission animation -->
+  <script>
+    const form = document.querySelector("form");
+    const loader = document.getElementById("loader");
+    const wrapper = document.getElementById("form-wrapper");
+
+    form.onsubmit = () => {
+      loader.style.display = "block";
+      wrapper.style.display = "none";
+    };
+  </script>
+
+</body>
+</html>
