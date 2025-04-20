@@ -104,7 +104,7 @@ python3 test_runner.py
 
 ## 🤝 Contributions
 
-Pull requests welcome! Or [open an issue](https://github.com/yourusername/seoul-study-spot/issues) to suggest improvements.
+Pull requests welcome! Or [open an issue](https://github.com/temilola23/seoul-study-spot-expert-system/issues) to suggest improvements.
 
 ---
 
