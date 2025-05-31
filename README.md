@@ -88,8 +88,45 @@ python3 test_runner.py
 ---
 
 ## 📸 Demo Screenshots
+### 🧠 How it Works (Architecture)
 
-> _(Coming soon!)_
+![Code Flow Diagram](assets/seoul_study_flowchart.png)
+> High-level overview of user input, preference parsing, mode selection, and expert system recommendation process.
+
+---
+
+### 🖼️ Application Walkthrough
+
+### GUI Homepage
+![GUI Start](assets/gui_intro.png)
+> The starting point for users to choose their input style: Natural Language or Guided CLI Form.
+
+### Natural Language Input
+![NL Input](assets/natural_language.png)
+> Users can describe their ideal study spot in plain English.
+
+### Parsed Preferences
+![Parsed Preferences](assets/nlp_interpretation.png)
+> The app extracts structured preferences from the text using rule-based parsing.
+
+### Travel Preferences Input
+![Travel Input](assets/location_preference.png)
+> Users specify location and acceptable travel time.
+
+### Mode Selection
+![Mode Selection](assets/explanation_mode.png)
+> Choose between Strict (exact match) or Fallback (ranked, flexible) recommendation mode.
+
+### Results Screen (Fallback Mode)
+![Results](assets/results.png)
+> The system ranks and explains results based on how well each spot matches user preferences.
+
+---
+
+### 🧬 Prolog Inference Flow
+
+![Prolog Logic Flow](assets/prolog_logic_flowchart.png)
+> The logic used in fallback mode to score partial matches and explain missing features.
 
 ---
 
